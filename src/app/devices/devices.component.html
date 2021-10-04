@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-xs-12">
+        <form (ngSubmit)="onsubmit(f)" #f="ngForm">
+           
+                <div class="row">
+                    <div class="col-sm-5 form-group">
+                        <label for="cor">Cor</label>
+                        <input 
+                            type="text" 
+                            id="color" 
+                            class="form-control" 
+                            name="color" 
+                            required="required" 
+                            ngModel
+                        >
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5 form-group">
+                            <label for="serial">Serial</label>
+                            <input 
+                                type="text" 
+                                id="serial" 
+                                class="form-control" 
+                                name="serial" 
+                                required="required" 
+                                ngModel
+                            >
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                              <label for="categories">Categorias</label>
+                              <select 
+                                name="categories" 
+                                id="categories"
+                                class="form-control" 
+                                style="margin-top: 10px; width: 10rem;"
+                                (click)="getValue($event)"
+                                >
+                                  <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
+                              </select>
+                            </div>
+                          </div>
+                        <div class="row">
+                            <div class="col-sm-5 form-group">
+                                <button 
+                                    style="margin-top: 10px;"
+                                    class="btn btn-success" 
+                                    type="submit"
+                                    [disabled]="!f.valid"
+                                >
+                                Salvar
+                               </button>
+                               
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>

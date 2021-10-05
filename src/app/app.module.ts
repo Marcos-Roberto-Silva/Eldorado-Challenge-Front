@@ -8,6 +8,9 @@ import { DevicesComponent } from './devices/devices.component';
 import { HeaderComponent } from './header/header.component';
 import { CategoriesComponent } from './categories/categories.component';
 import { RouterModule, Routes } from '@angular/router';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CardModule } from 'primeng/card';
+import {DropdownModule} from 'primeng/dropdown';
 
 const appRoutes: Routes = [
   { path: 'devices', component: DevicesComponent },
@@ -22,9 +25,12 @@ const appRoutes: Routes = [
     CategoriesComponent,
   ],
   imports: [
+    CardModule,
     BrowserModule,
     FormsModule,
+    DropdownModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],

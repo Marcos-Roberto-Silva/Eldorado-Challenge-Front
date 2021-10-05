@@ -1,43 +1,46 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, NgForm } from '@angular/forms';
-import { CategoriesService } from '../categories/categories.service';
+import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { DataStorageService } from '../shared/data-storage.service';
+import { Category } from '../shared/category.model';
+import { Device } from '../shared/device.model';
+import { DeviceService } from './devices.service';
 
 @Component({
   selector: 'app-devices',
   templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.css']
+  styleUrls: ['./devices.component.css'],
 })
 export class DevicesComponent implements OnInit {
-  devices = [];
+  devices: Device;
   selectedItem = '';
-  categories = [];
+  categories: Category;
 
-  categoryDefault = [
-    { name: 'celular' },
-    { name: 'tv' },
-    { name: 'noteBook' },
-]
-
-  constructor(private categoriesService: CategoriesService) { }
+  constructor(private dataStorageService: DataStorageService, private deviceService: DeviceService) {}
 
   ngOnInit(): void {
-   
-    this.categoriesService.getCategories().subscribe((category) => {
-      this.categories = Object.values(category);
-    });    
-  }
-
-  getValue(event: any): void {
-    this.selectedItem = event.target.value;    
+    this.dataStorageService.getCategories().subscribe((category) => {
+      this.categories = category;
+    });
   }
 
   onsubmit(form: NgForm) {
-    const category = this.selectedItem;
-    const color = form.value.color
-    const serial = form.value.serial
-    const payload = { category: category, serial: serial, color: color };
-    this.devices = [...this.devices, { payload }];
-    
+    const category = this.selectedItem['name'];
+    const color = form.value.color;
+    const serial = Number(form.value.serial);
+    const categoryId = Number(this.selectedItem['id']);
+    const payload = {
+      category: category,
+      color: color,
+      partNumber: serial,
+      categoryId: categoryId,
+    };
+    this.devices = payload;
+
+    this.deviceService.getDevices(payload);
+
+    this.dataStorageService.postDevices().subscribe((devices) => {
+      console.log('sending', devices);
+    });
     form.reset();
   }
 }

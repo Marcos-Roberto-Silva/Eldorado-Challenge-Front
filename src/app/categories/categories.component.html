@@ -1,34 +1,25 @@
-<div class="row">
+<p-card>
+  <div class="row">
     <div class="col-xs-12">
-        <form (ngSubmit)="onsubmit(f)" #f="ngForm">
-            <div class="row">
-                </div>
-                <div class="row">
-                    <div class="col-sm-5 form-group">
-                        <label for="cor">Nome da Categoria</label>
-                        <input 
-                            style="margin-bottom: 10px;"
-                            type="text" 
-                            id="name" 
-                            class="form-control" 
-                            name="name" 
-                            required="required" 
-                            ngModel
-                        >
-                        </div>
-                    </div>
-                
-                        <div class="row">
-                            <div class="col-sm-5 form-group">
-                                <button 
-                                    class="btn btn-success" 
-                                    type="submit"
-                                    [disabled]="!f.valid"
-                                >
-                                Salvar
-                               </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
+      <form (ngSubmit)="onsubmit(f)" #f="ngForm">
+        <div class="row">
+        </div>
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <label for="cor">Nome da Categoria</label>
+            <input style="margin-bottom: 10px;" type="text" id="name" class="form-control" name="name"
+              required="required" ngModel>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-sm-5 form-group">
+            <button class="btn btn-success" type="submit" [disabled]="!f.valid">
+              Salvar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</p-card>

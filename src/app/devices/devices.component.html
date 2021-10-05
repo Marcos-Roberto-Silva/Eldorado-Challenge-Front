@@ -1,3 +1,5 @@
+
+<p-card>
 <div class="row">
     <div class="col-xs-12">
         <form (ngSubmit)="onsubmit(f)" #f="ngForm">
@@ -19,6 +21,7 @@
                         <div class="col-sm-5 form-group">
                             <label for="serial">Serial</label>
                             <input 
+                                style="margin-bottom: 10px;"
                                 type="text" 
                                 id="serial" 
                                 class="form-control" 
@@ -30,16 +33,14 @@
                         </div>
                         <div class="row">
                             <div class="col-xs-12">
-                              <label for="categories">Categorias</label>
-                              <select 
-                                name="categories" 
-                                id="categories"
-                                class="form-control" 
-                                style="margin-top: 10px; width: 10rem;"
-                                (click)="getValue($event)"
+                              <label for="categories" style="margin-right: 10px;">Categorias</label>
+                              <p-dropdown
+                                [options]="categories"
+                                [(ngModel)]="selectedItem" 
+                                name="category"
+                                optionLabel="name"
                                 >
-                                  <option *ngFor="let category of categories" [value]="category.name">{{ category.name }}</option>
-                              </select>
+                                </p-dropdown>
                             </div>
                           </div>
                         <div class="row">
@@ -58,3 +59,4 @@
                     </form>
                 </div>
             </div>
+        </p-card>
